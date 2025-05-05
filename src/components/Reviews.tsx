@@ -44,7 +44,6 @@ const Review = ({imgSrc, className, ...props} : ReviewProps) => {
   ]
 
   const animationDelay = AVAILABLE_DELAYS[Math.floor(Math.random() * AVAILABLE_DELAYS.length)]
-  console.log(Math.floor(Math.random() * AVAILABLE_DELAYS.length))
 
   return(
     <div className={cn("animate-fade-in opacity-0 bg-white rounded-[2.25rem] p-6 mb-5 shadow-xl shadow-slate-900/5", className )} style={{animationDelay}} {...props}>
