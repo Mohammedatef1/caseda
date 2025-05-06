@@ -56,7 +56,7 @@ const Page = () => {
         'image/jpeg': ['.jpeg'],
       }} onDragEnter={() => setIsDragOver(true)} onDragLeave={() => setIsDragOver(false)} onDropAccepted={onDropAccepted} onDropRejected={onDropRejected}>
         {({getInputProps, getRootProps}) => (
-          <div className='relative flex flex-1 flex-col items-center justify-center w-full' {...getRootProps()}>
+          <div className='relative flex flex-1 flex-col items-center justify-center w-full gap-y-2' {...getRootProps()}>
             <input {...getInputProps()} />
             {
               isPending? <>
@@ -67,7 +67,7 @@ const Page = () => {
               <>
                 <Loader2 className='animate-spin'/>
                 <p>uploading...</p>
-                <Progress value={progressValue} className='w-52' />
+                <Progress value={progressValue} className='w-52 bg-gray-300' />
               </> : isDragOver ? 
               <>
                 <MousePointerSquareDashed />
