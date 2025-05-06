@@ -2,23 +2,37 @@
 
 import MaxWidthWrapper from '@/components/MaxWidthWrapper'
 import { Progress } from '@/components/ui/progress'
+import { useUploadThing } from '@/lib/uploadThing'
 import { Image, Loader2,  MousePointerSquareDashed } from 'lucide-react'
-import { title } from 'process'
+import { useRouter } from 'next/navigation'
 import React, { useState, useTransition } from 'react'
 import Dropzone, {FileRejection} from 'react-dropzone'
 import { toast } from 'sonner'
 
 const Page = () => {
 
-  const [isDragOver, setIsDragOver] = useState(false)
-  const [isUploading, setIsUploading] = useState(false)
-  const [progressValue, setProgressValue] = useState(0)
-  const [isPending, onTransition] = useTransition()
+  const router = useRouter()
 
-  const onDropAccepted = () => {
-    console.log('accepted');
+  const [isDragOver, setIsDragOver] = useState(false)
+  const [progressValue, setProgressValue] = useState(0)
+  const [isPending, startTransition] = useTransition()
+  
+  const {startUpload, isUploading} = useUploadThing("imageUploader" , {
+    onClientUploadComplete: ([data]) => {
+      const configId = data.serverData.configId
+      startTransition(() => {
+        router.push(`/configure/design?id=${configId}`)
+      })
+    },
+    onUploadProgress: (p) => {
+      setProgressValue(p)
+    }
+  })
+
+  const onDropAccepted = (acceptedFiles: File[]) => {
+    startUpload(acceptedFiles, {configId: undefined})
     setIsDragOver(false)
-  }
+  } 
 
   const onDropRejected = (fileRejection: FileRejection[] ) => {
     setIsDragOver(false)
@@ -38,11 +52,15 @@ const Page = () => {
           <div className='relative flex flex-1 flex-col items-center justify-center w-full' {...getRootProps()}>
             <input {...getInputProps()} />
             {
+              isPending? <>
+                <Loader2 className='animate-spin'/>
+                <p>redirecting please wait...</p>
+              </> :
               isUploading? 
               <>
                 <Loader2 className='animate-spin'/>
                 <p>uploading...</p>
-                <Progress value={progressValue} />
+                <Progress value={progressValue} className='w-52' />
               </> : isDragOver ? 
               <>
                 <MousePointerSquareDashed />
