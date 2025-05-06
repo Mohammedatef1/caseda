@@ -30,8 +30,15 @@ const Page = () => {
   })
 
   const onDropAccepted = (acceptedFiles: File[]) => {
-    startUpload(acceptedFiles, {configId: undefined})
     setIsDragOver(false)
+    if (acceptedFiles.length > 1 ) {
+      toast.error("you can't upload multiple files.")
+      return
+    }else if (acceptedFiles[0].size > 4194304) {
+      toast.error("file size can't exceeded 4MB.")
+      return
+    }
+    startUpload(acceptedFiles, {configId: undefined})
   } 
 
   const onDropRejected = (fileRejection: FileRejection[] ) => {
