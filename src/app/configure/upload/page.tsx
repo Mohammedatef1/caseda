@@ -2,11 +2,13 @@
 
 import MaxWidthWrapper from '@/components/MaxWidthWrapper'
 import { Progress } from '@/components/ui/progress'
-import { Image, Loader2 } from 'lucide-react'
+import { Image, Loader2,  MousePointerSquareDashed } from 'lucide-react'
+import { title } from 'process'
 import React, { useState, useTransition } from 'react'
-import Dropzone from 'react-dropzone'
+import Dropzone, {FileRejection} from 'react-dropzone'
+import { toast } from 'sonner'
 
-const page = () => {
+const Page = () => {
 
   const [isDragOver, setIsDragOver] = useState(false)
   const [isUploading, setIsUploading] = useState(false)
@@ -18,8 +20,10 @@ const page = () => {
     setIsDragOver(false)
   }
 
-  const onDropRejected = () => {
-    console.log("rejected")
+  const onDropRejected = (fileRejection: FileRejection[] ) => {
+    setIsDragOver(false)
+    const [file] = fileRejection
+    toast.error(`the file type ${file.file.type.split('/')[1]} is not supported`)
   }
 
   return ( 
@@ -41,12 +45,12 @@ const page = () => {
                 <Progress value={progressValue} />
               </> : isDragOver ? 
               <>
-                <Image/>
+                <MousePointerSquareDashed />
                 <p><span className='font-semibold'>drop file </span> to upload</p>
                 <span>PNG, JPG, JPEG</span>
               </> :  
               <>          
-                <Image/>
+                <Image />
                 <p><span className='font-semibold'>Click to upload</span> or drag and drop</p>
                 <span>PNG, JPG, JPEG</span>
               </>
@@ -59,4 +63,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
