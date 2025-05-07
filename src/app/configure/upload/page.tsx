@@ -54,7 +54,7 @@ const Page = () => {
         'image/png': ['.png'],
         'image/jpg': ['.jpg'],
         'image/jpeg': ['.jpeg'],
-      }} onDragEnter={() => setIsDragOver(true)} onDragLeave={() => setIsDragOver(false)} onDropAccepted={onDropAccepted} onDropRejected={onDropRejected}>
+      }} disabled={isUploading || isPending} onDragEnter={() => setIsDragOver(true)} onDragLeave={() => setIsDragOver(false)} onDropAccepted={onDropAccepted} onDropRejected={onDropRejected}>
         {({getInputProps, getRootProps}) => (
           <div className='relative flex flex-1 flex-col items-center justify-center w-full gap-y-2' {...getRootProps()}>
             <input {...getInputProps()} />
