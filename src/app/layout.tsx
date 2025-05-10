@@ -24,9 +24,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${recursive.variable} antialiased`}
-      >
-        <main className="flex flex-col min-h-screen">
+        className={`${recursive.variable} antialiased`}>
+        <main className="flex flex-col">
           <Navbar />
           {children}
           <Footer />
