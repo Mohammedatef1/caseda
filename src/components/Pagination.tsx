@@ -52,7 +52,7 @@ const Pagination = () => {
               <img src={page.image} alt="pagination image" className='w-full h-full object-contain' />
             </div>
             <div className='flex flex-col'>
-              <span className='font-semibold text-zinc-700'>{page.label}</span>
+              <span className={`font-semibold ${isCompleted ? 'text-primary' : 'text-zinc-700'}`}>{page.label}</span>
               <span className='text-zinc-500'>{page.desc}</span>
             </div>
           </div>)})}
