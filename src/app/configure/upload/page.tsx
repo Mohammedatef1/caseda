@@ -56,7 +56,7 @@ const Page = () => {
         'image/jpeg': ['.jpeg'],
       }} disabled={isUploading || isPending} onDragEnter={() => setIsDragOver(true)} onDragLeave={() => setIsDragOver(false)} onDropAccepted={onDropAccepted} onDropRejected={onDropRejected}>
         {({getInputProps, getRootProps}) => (
-          <div className='relative flex flex-1 flex-col items-center justify-center w-full gap-y-2 text-sm cursor-pointer' {...getRootProps()}>
+          <div className={`relative flex flex-1 flex-col items-center justify-center w-full gap-y-2 text-sm ${isUploading ? '' : 'cursor-pointer' }`} {...getRootProps()}>
             <input {...getInputProps()} />
             {
               isPending? <>
