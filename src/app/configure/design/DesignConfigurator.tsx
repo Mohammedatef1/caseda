@@ -26,13 +26,14 @@ const DesignConfigurator = ({configId, imageDimensions, imgUrl} : DesignConfigur
           />
         </div>
         <Rnd default={{ x:150,y: 150, width: imageDimensions.width, height: imageDimensions.height  }} lockAspectRatio 
+        className='absolute z-20'
         resizeHandleComponent={{
           topLeft: <HandleComponent/>,
           topRight: <HandleComponent/>,
           bottomLeft: <HandleComponent/>,
           bottomRight: <HandleComponent/>
         }}>
-          <Image fill src={imgUrl} alt='' className='select-none pointer-events-none relative z-1' />
+          <Image fill src={imgUrl} alt='' className='select-none pointer-events-none' />
         </Rnd>
       </div>
       <div className="md:col-span-1"></div>
