@@ -3,7 +3,7 @@
 import MaxWidthWrapper from '@/components/MaxWidthWrapper'
 import { Progress } from '@/components/ui/progress'
 import { useUploadThing } from '@/lib/uploadThing'
-import { Image, Loader2,  MousePointerSquareDashed } from 'lucide-react'
+import { Image as ImageIcon, Loader2,  MousePointerSquareDashed } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React, { useState, useTransition } from 'react'
 import Dropzone, {FileRejection} from 'react-dropzone'
@@ -56,7 +56,7 @@ const Page = () => {
         'image/jpeg': ['.jpeg'],
       }} disabled={isUploading || isPending} onDragEnter={() => setIsDragOver(true)} onDragLeave={() => setIsDragOver(false)} onDropAccepted={onDropAccepted} onDropRejected={onDropRejected}>
         {({getInputProps, getRootProps}) => (
-          <div className='relative flex flex-1 flex-col items-center justify-center w-full gap-y-2' {...getRootProps()}>
+          <div className='relative flex flex-1 flex-col items-center justify-center w-full gap-y-2 text-sm' {...getRootProps()}>
             <input {...getInputProps()} />
             {
               isPending? <>
@@ -72,10 +72,10 @@ const Page = () => {
               <>
                 <MousePointerSquareDashed />
                 <p><span className='font-semibold'>drop file </span> to upload</p>
-                <span>PNG, JPG, JPEG</span>
+                <span >PNG, JPG, JPEG</span>
               </> :  
               <>          
-                <Image />
+                <ImageIcon />
                 <p><span className='font-semibold'>Click to upload</span> or drag and drop</p>
                 <span>PNG, JPG, JPEG</span>
               </>
