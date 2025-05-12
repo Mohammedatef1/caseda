@@ -6,7 +6,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Rnd } from 'react-rnd'
 import {
   Select,
@@ -29,10 +29,6 @@ const DesignConfigurator = ({configId, imageDimensions, imgUrl} : DesignConfigur
     color: COLORS.options[0],
     model: MODELS.options[0].value
   })
-
-  useEffect(() => {
-    console.log(options)
-  }, [options])
 
   return (
     <div className="relative grid grid-cols-1 md:grid-cols-3 overflow-hidden my-10">
@@ -58,8 +54,8 @@ const DesignConfigurator = ({configId, imageDimensions, imgUrl} : DesignConfigur
           <Image fill src={imgUrl} alt='' className='select-none pointer-events-none' />
         </Rnd>
       </div>
-      <div className="md:col-span-1 p-4 sm:p-6 h-[37.5rem] flex flex-col gap-y-2">
-        <ScrollArea className='flex-1'>
+      <div className="md:col-span-1 p-4 sm:p-6 h-[37.5rem] flex flex-col gap-y-5">
+        <ScrollArea className='flex-1 overflow-auto'>
           <h3 className='font-bold text-2xl md:text-4xl mb-8'>Customize your case.</h3>
           <div className='flex flex-col gap-y-5'>
             <div>
