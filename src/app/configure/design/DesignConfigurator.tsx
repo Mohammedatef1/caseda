@@ -1,6 +1,6 @@
 "use client"
 
-import { COLORS } from '@/app/validators/option-validator';
+import { COLORS, MODELS } from '@/app/validators/option-validator';
 import HandleComponent from '@/components/HandleComponent';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -8,6 +8,15 @@ import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { useState } from 'react';
 import { Rnd } from 'react-rnd'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { Button } from '@/components/ui/button';
+import { MoveRight } from 'lucide-react';
 
 interface DesignConfiguratorProps {
   configId: string;
@@ -17,7 +26,8 @@ interface DesignConfiguratorProps {
 
 const DesignConfigurator = ({configId, imageDimensions, imgUrl} : DesignConfiguratorProps) => {
   const [options, setOptions] = useState({
-    color: COLORS[0]
+    color: COLORS.options[0],
+    model: MODELS.options[0].value
   })
 
   return (
@@ -44,21 +54,49 @@ const DesignConfigurator = ({configId, imageDimensions, imgUrl} : DesignConfigur
           <Image fill src={imgUrl} alt='' className='select-none pointer-events-none' />
         </Rnd>
       </div>
-      <div className="md:col-span-1 p-4 sm:p-6 h-[37.5rem]">
-        <h3 className='font-bold text-2xl md:text-4xl mb-8'>Customize your case.</h3>
-        <ScrollArea className='flex-1 h-full'>
-          <span>color: {options.color.label}</span>
-          <RadioGroup onChange={(e) => console.log(e)}  className='flex items-center gap-x-2 flex-wrap mt-2'>
-            {COLORS.map(item => (
-              <div className={`p-0.5 border rounded-full transition-colors ${options.color === item ? `border-${item.tw}` : 'border-transparent'}`} key={item.value}>
-                <RadioGroupItem value={item.value} id={`color-${item.value}`} className='hidden' />
-                <label onClick={() => {setOptions(prev => {
-                  return {...prev, color: item}
-                })}} htmlFor={`color-${item.value}`} className={`w-8 h-8 rounded-full block bg-${item.tw}`} ></label>
-              </div>
-            ))}
-          </RadioGroup>
+      <div className="md:col-span-1 p-4 sm:p-6 h-[37.5rem] flex flex-col gap-y-5">
+        <ScrollArea className='flex-1 overflow-auto'>
+          <h3 className='font-bold text-2xl md:text-4xl mb-8'>Customize your case.</h3>
+          <div className='flex flex-col gap-y-5'>
+            <div>
+              <span>{COLORS.label}: {options.color.label}</span>
+              <RadioGroup onChange={(e) => console.log(e)}  className='flex items-center gap-x-2 flex-wrap mt-2'>
+                {COLORS.options.map(item => (
+                  <div className={`p-0.5 border rounded-full transition-colors ${options.color === item ? `border-${item.tw}` : 'border-transparent'}`} key={item.value}>
+                    <RadioGroupItem value={item.value} id={`color-${item.value}`} className='hidden' />
+                    <label onClick={() => {setOptions(prev => {
+                      return {...prev, color: item}
+                    })}} htmlFor={`color-${item.value}`} className={`w-8 h-8 rounded-full cursor-pointer block bg-${item.tw}`} ></label>
+                  </div>
+                ))}
+              </RadioGroup>
+            </div>
+            <div>
+              <span>{MODELS.label}</span>
+              <Select onValueChange={(value) => {
+                setOptions(prev => {
+                  return {...prev, model: value}
+                })
+              }}>
+                <SelectTrigger className="w-full focus-visible:outline-none focus-visible:ring-0 mt-2 ring-0">
+                  <SelectValue placeholder={MODELS.options[0]?.label} />
+                </SelectTrigger>
+                <SelectContent>
+                  {MODELS.options.map(item => (
+                    <SelectItem key={item.label} value={item.value}>{item.label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
         </ScrollArea>
+        <div className='flex items-center gap-x-2 md:gap-x-5 cursor-pointer'>
+          <span>$14.00</span>
+          <Button className='flex-1'>
+            <span>Continue</span>
+            <MoveRight />
+          </Button>
+        </div>
       </div>
     </div>
   )
