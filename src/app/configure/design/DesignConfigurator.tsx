@@ -35,7 +35,7 @@ const DesignConfigurator = ({configId, imageDimensions, imgUrl} : DesignConfigur
 
   const [options, setOptions] = useState({
     color: COLORS.options[0],
-    model: MODELS.options[0].value
+    model: MODELS.options[0]
   })
   const [renderedImagePosition, setRenderedImagePosition] = useState({
     x: 150,
@@ -157,13 +157,15 @@ const DesignConfigurator = ({configId, imageDimensions, imgUrl} : DesignConfigur
             </div>
             <div>
               <span>{MODELS.label}</span>
-              <Select onValueChange={(value) => {
+              <Select defaultValue={options.model.value} onValueChange={(value) => {
+                const model = MODELS.options.find(el => el.value === value)
+                if (!model) return
                 setOptions(prev => {
-                  return {...prev, model: value}
+                  return {...prev, model}
                 })
               }}>
                 <SelectTrigger className="w-full focus-visible:outline-none focus-visible:ring-0 mt-2 ring-0">
-                  <SelectValue placeholder={MODELS.options[0]?.label} />
+                  <SelectValue placeholder={options.model.label} />
                 </SelectTrigger>
                 <SelectContent>
                   {MODELS.options.map(item => (
