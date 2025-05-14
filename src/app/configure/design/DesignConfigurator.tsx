@@ -86,7 +86,7 @@ const DesignConfigurator = ({configId, imageDimensions, imgUrl} : DesignConfigur
       const base64Data = base64?.split(',')[1]
 
       const blob = convert64ToBlob(base64Data!, 'image/png')
-      const file = new File([blob], `case-${configId.slice(0, 4)}`, {type: 'image/png'} )
+      const file = new File([blob], `case-${configId.slice(5)}`, {type: 'image/png'} )
 
       await startUpload([file], {configId})
     } catch (error) {
