@@ -20,6 +20,64 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 export type Configuration = $Result.DefaultSelection<Prisma.$ConfigurationPayload>
 
 /**
+ * Enums
+ */
+export namespace $Enums {
+  export const Color: {
+  red: 'red',
+  blue: 'blue',
+  black: 'black'
+};
+
+export type Color = (typeof Color)[keyof typeof Color]
+
+
+export const Model: {
+  iphonex: 'iphonex',
+  iphone11: 'iphone11',
+  iphone12: 'iphone12',
+  iphone13: 'iphone13',
+  iphone14: 'iphone14',
+  iphone15: 'iphone15'
+};
+
+export type Model = (typeof Model)[keyof typeof Model]
+
+
+export const Material: {
+  silicon: 'silicon',
+  polycarbonate: 'polycarbonate'
+};
+
+export type Material = (typeof Material)[keyof typeof Material]
+
+
+export const Finish: {
+  smooth: 'smooth',
+  texture: 'texture'
+};
+
+export type Finish = (typeof Finish)[keyof typeof Finish]
+
+}
+
+export type Color = $Enums.Color
+
+export const Color: typeof $Enums.Color
+
+export type Model = $Enums.Model
+
+export const Model: typeof $Enums.Model
+
+export type Material = $Enums.Material
+
+export const Material: typeof $Enums.Material
+
+export type Finish = $Enums.Finish
+
+export const Finish: typeof $Enums.Finish
+
+/**
  * ##  Prisma Client ʲˢ
  *
  * Type-safe database client for TypeScript & Node.js
@@ -884,11 +942,13 @@ export namespace Prisma {
   export type ConfigurationAvgAggregateOutputType = {
     width: number | null
     height: number | null
+    price: number | null
   }
 
   export type ConfigurationSumAggregateOutputType = {
     width: number | null
     height: number | null
+    price: number | null
   }
 
   export type ConfigurationMinAggregateOutputType = {
@@ -897,6 +957,11 @@ export namespace Prisma {
     height: number | null
     imgUrl: string | null
     croppedImageUrl: string | null
+    color: string | null
+    model: string | null
+    finish: string | null
+    material: string | null
+    price: number | null
   }
 
   export type ConfigurationMaxAggregateOutputType = {
@@ -905,6 +970,11 @@ export namespace Prisma {
     height: number | null
     imgUrl: string | null
     croppedImageUrl: string | null
+    color: string | null
+    model: string | null
+    finish: string | null
+    material: string | null
+    price: number | null
   }
 
   export type ConfigurationCountAggregateOutputType = {
@@ -913,6 +983,11 @@ export namespace Prisma {
     height: number
     imgUrl: number
     croppedImageUrl: number
+    color: number
+    model: number
+    finish: number
+    material: number
+    price: number
     _all: number
   }
 
@@ -920,11 +995,13 @@ export namespace Prisma {
   export type ConfigurationAvgAggregateInputType = {
     width?: true
     height?: true
+    price?: true
   }
 
   export type ConfigurationSumAggregateInputType = {
     width?: true
     height?: true
+    price?: true
   }
 
   export type ConfigurationMinAggregateInputType = {
@@ -933,6 +1010,11 @@ export namespace Prisma {
     height?: true
     imgUrl?: true
     croppedImageUrl?: true
+    color?: true
+    model?: true
+    finish?: true
+    material?: true
+    price?: true
   }
 
   export type ConfigurationMaxAggregateInputType = {
@@ -941,6 +1023,11 @@ export namespace Prisma {
     height?: true
     imgUrl?: true
     croppedImageUrl?: true
+    color?: true
+    model?: true
+    finish?: true
+    material?: true
+    price?: true
   }
 
   export type ConfigurationCountAggregateInputType = {
@@ -949,6 +1036,11 @@ export namespace Prisma {
     height?: true
     imgUrl?: true
     croppedImageUrl?: true
+    color?: true
+    model?: true
+    finish?: true
+    material?: true
+    price?: true
     _all?: true
   }
 
@@ -1044,6 +1136,11 @@ export namespace Prisma {
     height: number
     imgUrl: string
     croppedImageUrl: string | null
+    color: string | null
+    model: string | null
+    finish: string | null
+    material: string | null
+    price: number | null
     _count: ConfigurationCountAggregateOutputType | null
     _avg: ConfigurationAvgAggregateOutputType | null
     _sum: ConfigurationSumAggregateOutputType | null
@@ -1071,6 +1168,11 @@ export namespace Prisma {
     height?: boolean
     imgUrl?: boolean
     croppedImageUrl?: boolean
+    color?: boolean
+    model?: boolean
+    finish?: boolean
+    material?: boolean
+    price?: boolean
   }, ExtArgs["result"]["configuration"]>
 
   export type ConfigurationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1079,6 +1181,11 @@ export namespace Prisma {
     height?: boolean
     imgUrl?: boolean
     croppedImageUrl?: boolean
+    color?: boolean
+    model?: boolean
+    finish?: boolean
+    material?: boolean
+    price?: boolean
   }, ExtArgs["result"]["configuration"]>
 
   export type ConfigurationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1087,6 +1194,11 @@ export namespace Prisma {
     height?: boolean
     imgUrl?: boolean
     croppedImageUrl?: boolean
+    color?: boolean
+    model?: boolean
+    finish?: boolean
+    material?: boolean
+    price?: boolean
   }, ExtArgs["result"]["configuration"]>
 
   export type ConfigurationSelectScalar = {
@@ -1095,9 +1207,14 @@ export namespace Prisma {
     height?: boolean
     imgUrl?: boolean
     croppedImageUrl?: boolean
+    color?: boolean
+    model?: boolean
+    finish?: boolean
+    material?: boolean
+    price?: boolean
   }
 
-  export type ConfigurationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "width" | "height" | "imgUrl" | "croppedImageUrl", ExtArgs["result"]["configuration"]>
+  export type ConfigurationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "width" | "height" | "imgUrl" | "croppedImageUrl" | "color" | "model" | "finish" | "material" | "price", ExtArgs["result"]["configuration"]>
 
   export type $ConfigurationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Configuration"
@@ -1108,6 +1225,11 @@ export namespace Prisma {
       height: number
       imgUrl: string
       croppedImageUrl: string | null
+      color: string | null
+      model: string | null
+      finish: string | null
+      material: string | null
+      price: number | null
     }, ExtArgs["result"]["configuration"]>
     composites: {}
   }
@@ -1536,6 +1658,11 @@ export namespace Prisma {
     readonly height: FieldRef<"Configuration", 'Int'>
     readonly imgUrl: FieldRef<"Configuration", 'String'>
     readonly croppedImageUrl: FieldRef<"Configuration", 'String'>
+    readonly color: FieldRef<"Configuration", 'String'>
+    readonly model: FieldRef<"Configuration", 'String'>
+    readonly finish: FieldRef<"Configuration", 'String'>
+    readonly material: FieldRef<"Configuration", 'String'>
+    readonly price: FieldRef<"Configuration", 'Int'>
   }
     
 
@@ -1921,7 +2048,12 @@ export namespace Prisma {
     width: 'width',
     height: 'height',
     imgUrl: 'imgUrl',
-    croppedImageUrl: 'croppedImageUrl'
+    croppedImageUrl: 'croppedImageUrl',
+    color: 'color',
+    model: 'model',
+    finish: 'finish',
+    material: 'material',
+    price: 'price'
   };
 
   export type ConfigurationScalarFieldEnum = (typeof ConfigurationScalarFieldEnum)[keyof typeof ConfigurationScalarFieldEnum]
@@ -2010,6 +2142,11 @@ export namespace Prisma {
     height?: IntFilter<"Configuration"> | number
     imgUrl?: StringFilter<"Configuration"> | string
     croppedImageUrl?: StringNullableFilter<"Configuration"> | string | null
+    color?: StringNullableFilter<"Configuration"> | string | null
+    model?: StringNullableFilter<"Configuration"> | string | null
+    finish?: StringNullableFilter<"Configuration"> | string | null
+    material?: StringNullableFilter<"Configuration"> | string | null
+    price?: IntNullableFilter<"Configuration"> | number | null
   }
 
   export type ConfigurationOrderByWithRelationInput = {
@@ -2018,6 +2155,11 @@ export namespace Prisma {
     height?: SortOrder
     imgUrl?: SortOrder
     croppedImageUrl?: SortOrderInput | SortOrder
+    color?: SortOrderInput | SortOrder
+    model?: SortOrderInput | SortOrder
+    finish?: SortOrderInput | SortOrder
+    material?: SortOrderInput | SortOrder
+    price?: SortOrderInput | SortOrder
   }
 
   export type ConfigurationWhereUniqueInput = Prisma.AtLeast<{
@@ -2029,6 +2171,11 @@ export namespace Prisma {
     height?: IntFilter<"Configuration"> | number
     imgUrl?: StringFilter<"Configuration"> | string
     croppedImageUrl?: StringNullableFilter<"Configuration"> | string | null
+    color?: StringNullableFilter<"Configuration"> | string | null
+    model?: StringNullableFilter<"Configuration"> | string | null
+    finish?: StringNullableFilter<"Configuration"> | string | null
+    material?: StringNullableFilter<"Configuration"> | string | null
+    price?: IntNullableFilter<"Configuration"> | number | null
   }, "id">
 
   export type ConfigurationOrderByWithAggregationInput = {
@@ -2037,6 +2184,11 @@ export namespace Prisma {
     height?: SortOrder
     imgUrl?: SortOrder
     croppedImageUrl?: SortOrderInput | SortOrder
+    color?: SortOrderInput | SortOrder
+    model?: SortOrderInput | SortOrder
+    finish?: SortOrderInput | SortOrder
+    material?: SortOrderInput | SortOrder
+    price?: SortOrderInput | SortOrder
     _count?: ConfigurationCountOrderByAggregateInput
     _avg?: ConfigurationAvgOrderByAggregateInput
     _max?: ConfigurationMaxOrderByAggregateInput
@@ -2053,6 +2205,11 @@ export namespace Prisma {
     height?: IntWithAggregatesFilter<"Configuration"> | number
     imgUrl?: StringWithAggregatesFilter<"Configuration"> | string
     croppedImageUrl?: StringNullableWithAggregatesFilter<"Configuration"> | string | null
+    color?: StringNullableWithAggregatesFilter<"Configuration"> | string | null
+    model?: StringNullableWithAggregatesFilter<"Configuration"> | string | null
+    finish?: StringNullableWithAggregatesFilter<"Configuration"> | string | null
+    material?: StringNullableWithAggregatesFilter<"Configuration"> | string | null
+    price?: IntNullableWithAggregatesFilter<"Configuration"> | number | null
   }
 
   export type ConfigurationCreateInput = {
@@ -2061,6 +2218,11 @@ export namespace Prisma {
     height: number
     imgUrl: string
     croppedImageUrl?: string | null
+    color?: string | null
+    model?: string | null
+    finish?: string | null
+    material?: string | null
+    price?: number | null
   }
 
   export type ConfigurationUncheckedCreateInput = {
@@ -2069,6 +2231,11 @@ export namespace Prisma {
     height: number
     imgUrl: string
     croppedImageUrl?: string | null
+    color?: string | null
+    model?: string | null
+    finish?: string | null
+    material?: string | null
+    price?: number | null
   }
 
   export type ConfigurationUpdateInput = {
@@ -2077,6 +2244,11 @@ export namespace Prisma {
     height?: IntFieldUpdateOperationsInput | number
     imgUrl?: StringFieldUpdateOperationsInput | string
     croppedImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    finish?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type ConfigurationUncheckedUpdateInput = {
@@ -2085,6 +2257,11 @@ export namespace Prisma {
     height?: IntFieldUpdateOperationsInput | number
     imgUrl?: StringFieldUpdateOperationsInput | string
     croppedImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    finish?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type ConfigurationCreateManyInput = {
@@ -2093,6 +2270,11 @@ export namespace Prisma {
     height: number
     imgUrl: string
     croppedImageUrl?: string | null
+    color?: string | null
+    model?: string | null
+    finish?: string | null
+    material?: string | null
+    price?: number | null
   }
 
   export type ConfigurationUpdateManyMutationInput = {
@@ -2101,6 +2283,11 @@ export namespace Prisma {
     height?: IntFieldUpdateOperationsInput | number
     imgUrl?: StringFieldUpdateOperationsInput | string
     croppedImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    finish?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type ConfigurationUncheckedUpdateManyInput = {
@@ -2109,6 +2296,11 @@ export namespace Prisma {
     height?: IntFieldUpdateOperationsInput | number
     imgUrl?: StringFieldUpdateOperationsInput | string
     croppedImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    finish?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -2152,6 +2344,17 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -2163,11 +2366,17 @@ export namespace Prisma {
     height?: SortOrder
     imgUrl?: SortOrder
     croppedImageUrl?: SortOrder
+    color?: SortOrder
+    model?: SortOrder
+    finish?: SortOrder
+    material?: SortOrder
+    price?: SortOrder
   }
 
   export type ConfigurationAvgOrderByAggregateInput = {
     width?: SortOrder
     height?: SortOrder
+    price?: SortOrder
   }
 
   export type ConfigurationMaxOrderByAggregateInput = {
@@ -2176,6 +2385,11 @@ export namespace Prisma {
     height?: SortOrder
     imgUrl?: SortOrder
     croppedImageUrl?: SortOrder
+    color?: SortOrder
+    model?: SortOrder
+    finish?: SortOrder
+    material?: SortOrder
+    price?: SortOrder
   }
 
   export type ConfigurationMinOrderByAggregateInput = {
@@ -2184,11 +2398,17 @@ export namespace Prisma {
     height?: SortOrder
     imgUrl?: SortOrder
     croppedImageUrl?: SortOrder
+    color?: SortOrder
+    model?: SortOrder
+    finish?: SortOrder
+    material?: SortOrder
+    price?: SortOrder
   }
 
   export type ConfigurationSumOrderByAggregateInput = {
     width?: SortOrder
     height?: SortOrder
+    price?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -2243,6 +2463,22 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -2257,6 +2493,14 @@ export namespace Prisma {
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -2296,6 +2540,17 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -2359,7 +2614,7 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -2367,7 +2622,23 @@ export namespace Prisma {
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
 

@@ -125,7 +125,12 @@ exports.Prisma.ConfigurationScalarFieldEnum = {
   width: 'width',
   height: 'height',
   imgUrl: 'imgUrl',
-  croppedImageUrl: 'croppedImageUrl'
+  croppedImageUrl: 'croppedImageUrl',
+  color: 'color',
+  model: 'model',
+  finish: 'finish',
+  material: 'material',
+  price: 'price'
 };
 
 exports.Prisma.SortOrder = {
