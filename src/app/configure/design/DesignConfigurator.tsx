@@ -16,10 +16,13 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Button } from '@/components/ui/button';
-import { MoveRight } from 'lucide-react';
+import { LoaderCircle, MoveRight } from 'lucide-react';
 import { toast } from 'sonner';
 import { useUploadThing } from '@/lib/uploadThing';
 import { BASE_PRICE } from '@/app/config/products';
+import { useMutation } from '@tanstack/react-query';
+import { saveConfiguration as _saveConfiguration, type SaveConfigurationParameters } from './actions';
+import { useRouter } from 'next/navigation';
 
 interface DesignConfiguratorProps {
   configId: string;
@@ -30,6 +33,22 @@ interface DesignConfiguratorProps {
 const DesignConfigurator = ({configId, imageDimensions, imgUrl} : DesignConfiguratorProps) => {
 
   const {startUpload, isUploading} = useUploadThing("imageUploader")
+  
+  const router = useRouter()
+
+  const {mutate: saveConfiguration, isPending} = useMutation({
+    mutationKey: ["save-config"],
+    mutationFn: async (options :SaveConfigurationParameters ) => {
+      await Promise.all([getCroppedImage(), _saveConfiguration(options)])
+    },
+    onError: (error) => {
+      console.log(error)
+      toast('something went wrong while saving your configuration')
+    },
+    onSuccess: () => {
+      router.push(`configuration/preview?id=${configId}`)
+    }
+  })
 
   const containerRef = useRef<HTMLDivElement>(null)
   const caseRef = useRef<HTMLDivElement>(null)
@@ -236,9 +255,15 @@ const DesignConfigurator = ({configId, imageDimensions, imgUrl} : DesignConfigur
         </ScrollArea>
         <div className='flex items-center gap-x-2 md:gap-x-5'>
           <span>${totalPrice.toFixed(2)}</span>
-          <Button onClick={getCroppedImage} disabled={isUploading} className='flex-1 cursor-pointer disabled:opacity-75 transition-opacity'>
+          <Button onClick={() => saveConfiguration({
+            color: options.color.value,
+            model: options.model.value,
+            finish: options.finish.value,
+            material: options.material.value,
+            configId
+          })} disabled={isPending} className='flex-1 cursor-pointer disabled:opacity-75 transition-opacity'>
             <span>Continue</span>
-            <MoveRight />
+            {isPending ? <LoaderCircle className='animate-spin' /> : <MoveRight /> }
           </Button>
         </div>
       </div>

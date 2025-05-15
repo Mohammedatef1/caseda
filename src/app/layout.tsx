@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import { Toaster } from "@/components/ui/sonner"
 import Footer from "@/components/Footer";
 import { Recursive } from 'next/font/google'
+import QueryProvider from "@/components/QueryProvider";
 
 
 const recursive = Recursive({
@@ -27,7 +28,9 @@ export default function RootLayout({
         className={`${recursive.variable} antialiased`}>
         <main className="flex flex-col">
           <Navbar />
-          {children}
+          <QueryProvider>
+            {children}
+          </QueryProvider>
           <Footer />
         </main>
         <Toaster position="top-center" />
