@@ -1,12 +1,12 @@
 "use client"
 
-import { COLORS, MODELS } from '@/app/validators/option-validator';
+import { COLORS, FINISH, MODELS, MATERIAL } from '@/app/validators/option-validator';
 import HandleComponent from '@/components/HandleComponent';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
 import NextImage from 'next/image';
-import { HTMLAttributes, useRef, useState } from 'react';
+import { HTMLAttributes, useEffect, useRef, useState } from 'react';
 import { Rnd } from 'react-rnd'
 import {
   Select,
@@ -19,6 +19,7 @@ import { Button } from '@/components/ui/button';
 import { MoveRight } from 'lucide-react';
 import { toast } from 'sonner';
 import { useUploadThing } from '@/lib/uploadThing';
+import { BASE_PRICE } from '@/app/config/products';
 
 interface DesignConfiguratorProps {
   configId: string;
@@ -35,12 +36,15 @@ const DesignConfigurator = ({configId, imageDimensions, imgUrl} : DesignConfigur
 
   const [options, setOptions] = useState({
     color: COLORS.options[0],
-    model: MODELS.options[0]
+    model: MODELS.options[0],
+    finish: FINISH.options[0],
+    material: MATERIAL.options[0]
   })
   const [renderedImagePosition, setRenderedImagePosition] = useState({
     x: 150,
     y: 150
   })
+  const [totalPrice, setTotalPrice] = useState(BASE_PRICE)
 
   const [renderedImageDimensions, setRenderedImageDimensions] = useState({
     width: imageDimensions.width,
@@ -108,6 +112,12 @@ const DesignConfigurator = ({configId, imageDimensions, imgUrl} : DesignConfigur
     return blob
   }
 
+  useEffect(() => {
+    let price = BASE_PRICE;
+    price += options.finish.price + options.material.price
+    setTotalPrice(price)
+  }, [options.finish , options.material])
+
   return (
     <div className="relative grid grid-cols-1 md:grid-cols-3 overflow-hidden my-10 text-slate-900">
       <div ref={containerRef} className="relative h-[37.5rem] md:col-span-2 border border-dashed border-gray-300 overflow-hidden rounded-2xl flex items-center justify-center p-4 md:p-6 ">
@@ -174,10 +184,58 @@ const DesignConfigurator = ({configId, imageDimensions, imgUrl} : DesignConfigur
                 </SelectContent>
               </Select>
             </div>
+
+            <div>
+              <OptionLabel>{FINISH.label}</OptionLabel>
+              <div className='space-y-4 text-sm'>
+                {FINISH.options.map(item => (
+                  <div key={item.value} className={cn('rounded-md border-2 border-gray-100 cursor-pointer transition-colors flex items-center justify-between gap-x-2 py-2 px-3 md:py-4 md:px-6',
+                      {
+                        'border-primary' : options.finish === item
+                      }
+                    )} onClick={() => setOptions(prev => {
+                      return {
+                        ...prev,
+                        finish: item
+                      }
+                    })} >
+                      <div>
+                        <p className='font-semibold'>{item.label}</p>
+                        <p className='text-slate-600'>{item.desc}</p>
+                      </div>
+                      <span>${item.price.toFixed(2)}</span>
+                  </div>
+                )) }
+              </div>
+            </div>
+
+            <div>
+              <OptionLabel>{MATERIAL.label}</OptionLabel>
+              <div className='space-y-4 text-sm'>
+                {MATERIAL.options.map(item => (
+                  <div key={item.value} className={cn('rounded-md border-2 border-gray-100 cursor-pointer transition-colors flex items-center justify-between gap-x-2 py-2 px-3 md:py-4 md:px-6',
+                      {
+                        'border-primary' : options.material === item
+                      }
+                    )} onClick={() => setOptions(prev => {
+                      return {
+                        ...prev,
+                        material: item
+                      }
+                    })} >
+                      <div>
+                        <p className='font-semibold'>{item.label}</p>
+                        <p className='text-slate-600'>{item.desc}</p>
+                      </div>
+                      <span>${item.price.toFixed(2)}</span>
+                  </div>
+                )) }
+              </div>
+            </div>
           </div>
         </ScrollArea>
         <div className='flex items-center gap-x-2 md:gap-x-5'>
-          <span>$14.00</span>
+          <span>${totalPrice.toFixed(2)}</span>
           <Button onClick={getCroppedImage} disabled={isUploading} className='flex-1 cursor-pointer disabled:opacity-75 transition-opacity'>
             <span>Continue</span>
             <MoveRight />

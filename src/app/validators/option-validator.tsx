@@ -2,6 +2,8 @@
 // bg-red-900 border-red-900
 // bg-zinc-950 border-zinc-950
 
+import { PRODUCT_PRICES } from "../config/products"
+
 export const COLORS = {
   label: 'Color',
   options: [
@@ -50,5 +52,41 @@ export const MODELS = {
       label: "Iphone 15",
       value: "iphone15"
     }
+  ]
+}
+
+export const MATERIAL = {
+  label: 'Material',
+  options: [
+    {
+      label: 'Silicone',
+      value: 'silicone',
+      price: PRODUCT_PRICES.material.silicone,
+      desc: ''
+    },
+    {
+      label: 'Soft polycarbonate',
+      value: 'polycarbonate',
+      price: PRODUCT_PRICES.material.polycarbonate,
+      desc: 'Scratch-resistant coating'
+    },
+  ]
+}
+
+export const FINISH = {
+  label: 'Finish',
+  options: [
+    {
+      label: 'Smooth finish',
+      value: 'smooth',
+      price: PRODUCT_PRICES.finish.smooth,
+      desc: ''
+    },
+    {
+      label: 'Textured finish',
+      value: 'textured',
+      price: PRODUCT_PRICES.finish.texture,
+      desc: 'Soft grippy texture'
+    },
   ]
 }
