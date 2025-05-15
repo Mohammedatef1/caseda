@@ -6,7 +6,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
 import NextImage from 'next/image';
-import { useRef, useState } from 'react';
+import { HTMLAttributes, useRef, useState } from 'react';
 import { Rnd } from 'react-rnd'
 import {
   Select,
@@ -109,7 +109,7 @@ const DesignConfigurator = ({configId, imageDimensions, imgUrl} : DesignConfigur
   }
 
   return (
-    <div className="relative grid grid-cols-1 md:grid-cols-3 overflow-hidden my-10">
+    <div className="relative grid grid-cols-1 md:grid-cols-3 overflow-hidden my-10 text-slate-900">
       <div ref={containerRef} className="relative h-[37.5rem] md:col-span-2 border border-dashed border-gray-300 overflow-hidden rounded-2xl flex items-center justify-center p-4 md:p-6 ">
         <div  ref={caseRef} className="relative h-full max-h-full rounded-[45px]">
           <img src="/phone-template.png" alt="" className="w-full h-full object-contain relative z-50 pointer-events-none select-none" />
@@ -143,8 +143,8 @@ const DesignConfigurator = ({configId, imageDimensions, imgUrl} : DesignConfigur
           <h3 className='font-bold text-2xl md:text-4xl mb-8'>Customize your case.</h3>
           <div className='flex flex-col gap-y-5'>
             <div>
-              <span>{COLORS.label}: {options.color.label}</span>
-              <RadioGroup className='flex items-center gap-x-2 flex-wrap mt-2'>
+              <OptionLabel>{COLORS.label}: {options.color.label}</OptionLabel>
+              <RadioGroup className='flex items-center gap-x-2 flex-wrap'>
                 {COLORS.options.map(item => (
                   <div className={`p-0.5 border rounded-full transition-colors ${options.color === item ? `border-${item.tw}` : 'border-transparent'}`} key={item.value}>
                     <RadioGroupItem value={item.value} id={`color-${item.value}`} className='hidden' />
@@ -156,7 +156,7 @@ const DesignConfigurator = ({configId, imageDimensions, imgUrl} : DesignConfigur
               </RadioGroup>
             </div>
             <div>
-              <span>{MODELS.label}</span>
+              <OptionLabel>{MODELS.label}</OptionLabel>
               <Select defaultValue={options.model.value} onValueChange={(value) => {
                 const model = MODELS.options.find(el => el.value === value)
                 if (!model) return
@@ -164,7 +164,7 @@ const DesignConfigurator = ({configId, imageDimensions, imgUrl} : DesignConfigur
                   return {...prev, model}
                 })
               }}>
-                <SelectTrigger className="w-full focus-visible:outline-none focus-visible:ring-0 mt-2 ring-0">
+                <SelectTrigger className="w-full focus-visible:outline-none focus-visible:ring-0 ring-0">
                   <SelectValue placeholder={options.model.label} />
                 </SelectTrigger>
                 <SelectContent>
@@ -185,6 +185,16 @@ const DesignConfigurator = ({configId, imageDimensions, imgUrl} : DesignConfigur
         </div>
       </div>
     </div>
+  )
+}
+
+interface OptionLabelProps extends HTMLAttributes<HTMLSpanElement> {
+  children: React.ReactNode
+}
+
+const OptionLabel = ({children, className, ...props}: OptionLabelProps) => {
+  return(
+    <p className={cn('font-semibold mb-2', className)} {...props}>{children}</p>
   )
 }
 
