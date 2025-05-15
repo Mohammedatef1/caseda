@@ -21,7 +21,7 @@ const PAGES = [
     label: 'Step 3: Summary',
     desc: 'Review your final design',
     image: '/snake-3.png',
-    pathName: '/configure/summary'
+    pathName: '/configure/preview'
   },
 ]
 

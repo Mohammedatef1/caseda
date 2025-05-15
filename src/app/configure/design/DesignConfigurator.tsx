@@ -46,7 +46,7 @@ const DesignConfigurator = ({configId, imageDimensions, imgUrl} : DesignConfigur
       toast('something went wrong while saving your configuration')
     },
     onSuccess: () => {
-      router.push(`configuration/preview?id=${configId}`)
+      router.push(`/configure/preview?id=${configId}`)
     }
   })
 
