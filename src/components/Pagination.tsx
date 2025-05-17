@@ -43,7 +43,7 @@ const Pagination = () => {
           
           return (
           <div className=' relative lg:flex-1 flex items-center gap-4 px-6 py-4 text-sm' key={page.label}>
-            {mount && <span className={cn('absolute bottom-0 left-0 lg:w-full lg:h-1 h-full w-1 bg-zinc-400', {
+            {mount && <span className={cn('absolute animate-fade-in bottom-0 left-0 lg:w-full lg:h-1 h-full w-1 bg-zinc-400', {
               'bg-primary': isCompleted  ,
               'bg-zinc-700' : isCurrent
             })}></span>}

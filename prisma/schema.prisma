@@ -33,6 +33,12 @@ enum Finish {
   texture
 }
 
+enum OrderStatus {
+  fulfilled
+  shipped
+  waiting_shipment
+}
+
 model Configuration {
   id              String  @id @default(cuid())
   width           Int
@@ -44,4 +50,46 @@ model Configuration {
   finish          String?
   material        String?
   price           Int?
+  Order           Order[]
+}
+
+model Order {
+  id              String        @id @default(cuid())
+  configuration   Configuration @relation(fields: [configurationId], references: [id])
+  configurationId String
+  amount          Float
+  isPaid          Boolean       @default(false)
+  status          OrderStatus   @default(waiting_shipment)
+
+  shippingAddress   ShippingAddress? @relation(fields: [shippingAddressId], references: [id])
+  shippingAddressId String?
+  billingAddress    BillingAddress?  @relation(fields: [billingAddressId], references: [id])
+  billingAddressId  String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ShippingAddress {
+  id          String  @id @default(cuid())
+  name        String
+  street      String
+  city        String
+  postalCode  String
+  country     String
+  State       String?
+  phoneNumber String?
+  order       Order[]
+}
+
+model BillingAddress {
+  id          String  @id @default(cuid())
+  name        String
+  street      String
+  city        String
+  postalCode  String
+  country     String
+  State       String?
+  phoneNumber String?
+  order       Order[]
 }

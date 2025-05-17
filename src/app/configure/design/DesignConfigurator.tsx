@@ -32,7 +32,7 @@ interface DesignConfiguratorProps {
 
 const DesignConfigurator = ({configId, imageDimensions, imgUrl} : DesignConfiguratorProps) => {
 
-  const {startUpload, isUploading} = useUploadThing("imageUploader")
+  const {startUpload} = useUploadThing("imageUploader")
   
   const router = useRouter()
 
@@ -141,7 +141,7 @@ const DesignConfigurator = ({configId, imageDimensions, imgUrl} : DesignConfigur
     <div className="relative grid grid-cols-1 md:grid-cols-3 overflow-hidden my-10 text-slate-900">
       <div ref={containerRef} className="relative h-[37.5rem] md:col-span-2 border border-dashed border-gray-300 overflow-hidden rounded-2xl flex items-center justify-center p-4 md:p-6 ">
         <div  ref={caseRef} className="relative h-full max-h-full rounded-[45px]">
-          <img src="/phone-template.png" alt="" className="w-full h-full object-contain relative z-50 pointer-events-none select-none" />
+          <img src="/phone-template.png" alt="uploaded image" className="w-full h-full object-contain relative z-50 pointer-events-none select-none" />
           <div className='absolute z-40 inset-0 left-[3px] top-px right-[3px] bottom-px rounded-[32px] shadow-[0_0_0_99999px_rgba(229,231,235,0.6)] pointer-events-none' />
           <div
             className={cn(
