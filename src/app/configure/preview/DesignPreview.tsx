@@ -30,6 +30,12 @@ const DesignPreview = ({configuration} : DesignPreviewProps) => {
   let totalPrice = BASE_PRICE
   totalPrice += (finish?.price ?? 0) +( material?.price ?? 0)
 
+  const {} = useMutation({
+    mutationKey: ["create-payment-session"],
+    mutationFn: async () => {
+      
+    }
+  })
 
   return (
     <>

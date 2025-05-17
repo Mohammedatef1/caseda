@@ -133,6 +133,40 @@ exports.Prisma.ConfigurationScalarFieldEnum = {
   price: 'price'
 };
 
+exports.Prisma.OrderScalarFieldEnum = {
+  id: 'id',
+  configurationId: 'configurationId',
+  amount: 'amount',
+  isPaid: 'isPaid',
+  status: 'status',
+  shippingAddressId: 'shippingAddressId',
+  billingAddressId: 'billingAddressId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ShippingAddressScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  street: 'street',
+  city: 'city',
+  postalCode: 'postalCode',
+  country: 'country',
+  State: 'State',
+  phoneNumber: 'phoneNumber'
+};
+
+exports.Prisma.BillingAddressScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  street: 'street',
+  city: 'city',
+  postalCode: 'postalCode',
+  country: 'country',
+  State: 'State',
+  phoneNumber: 'phoneNumber'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -147,10 +181,17 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-
+exports.OrderStatus = exports.$Enums.OrderStatus = {
+  fulfilled: 'fulfilled',
+  shipped: 'shipped',
+  waiting_shipment: 'waiting_shipment'
+};
 
 exports.Prisma.ModelName = {
-  Configuration: 'Configuration'
+  Configuration: 'Configuration',
+  Order: 'Order',
+  ShippingAddress: 'ShippingAddress',
+  BillingAddress: 'BillingAddress'
 };
 
 /**
