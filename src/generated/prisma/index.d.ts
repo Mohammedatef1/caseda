@@ -2677,8 +2677,8 @@ export namespace Prisma {
     amount: number
     isPaid: boolean
     status: $Enums.OrderStatus
-    shippingAddressId: string
-    billingAddressId: string
+    shippingAddressId: string | null
+    billingAddressId: string | null
     createdAt: Date
     updatedAt: Date
     _count: OrderCountAggregateOutputType | null
@@ -2713,8 +2713,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     configuration?: boolean | ConfigurationDefaultArgs<ExtArgs>
-    shippingAddress?: boolean | ShippingAddressDefaultArgs<ExtArgs>
-    billingAddress?: boolean | BillingAddressDefaultArgs<ExtArgs>
+    shippingAddress?: boolean | Order$shippingAddressArgs<ExtArgs>
+    billingAddress?: boolean | Order$billingAddressArgs<ExtArgs>
   }, ExtArgs["result"]["order"]>
 
   export type OrderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2728,8 +2728,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     configuration?: boolean | ConfigurationDefaultArgs<ExtArgs>
-    shippingAddress?: boolean | ShippingAddressDefaultArgs<ExtArgs>
-    billingAddress?: boolean | BillingAddressDefaultArgs<ExtArgs>
+    shippingAddress?: boolean | Order$shippingAddressArgs<ExtArgs>
+    billingAddress?: boolean | Order$billingAddressArgs<ExtArgs>
   }, ExtArgs["result"]["order"]>
 
   export type OrderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2743,8 +2743,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     configuration?: boolean | ConfigurationDefaultArgs<ExtArgs>
-    shippingAddress?: boolean | ShippingAddressDefaultArgs<ExtArgs>
-    billingAddress?: boolean | BillingAddressDefaultArgs<ExtArgs>
+    shippingAddress?: boolean | Order$shippingAddressArgs<ExtArgs>
+    billingAddress?: boolean | Order$billingAddressArgs<ExtArgs>
   }, ExtArgs["result"]["order"]>
 
   export type OrderSelectScalar = {
@@ -2762,26 +2762,26 @@ export namespace Prisma {
   export type OrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "configurationId" | "amount" | "isPaid" | "status" | "shippingAddressId" | "billingAddressId" | "createdAt" | "updatedAt", ExtArgs["result"]["order"]>
   export type OrderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     configuration?: boolean | ConfigurationDefaultArgs<ExtArgs>
-    shippingAddress?: boolean | ShippingAddressDefaultArgs<ExtArgs>
-    billingAddress?: boolean | BillingAddressDefaultArgs<ExtArgs>
+    shippingAddress?: boolean | Order$shippingAddressArgs<ExtArgs>
+    billingAddress?: boolean | Order$billingAddressArgs<ExtArgs>
   }
   export type OrderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     configuration?: boolean | ConfigurationDefaultArgs<ExtArgs>
-    shippingAddress?: boolean | ShippingAddressDefaultArgs<ExtArgs>
-    billingAddress?: boolean | BillingAddressDefaultArgs<ExtArgs>
+    shippingAddress?: boolean | Order$shippingAddressArgs<ExtArgs>
+    billingAddress?: boolean | Order$billingAddressArgs<ExtArgs>
   }
   export type OrderIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     configuration?: boolean | ConfigurationDefaultArgs<ExtArgs>
-    shippingAddress?: boolean | ShippingAddressDefaultArgs<ExtArgs>
-    billingAddress?: boolean | BillingAddressDefaultArgs<ExtArgs>
+    shippingAddress?: boolean | Order$shippingAddressArgs<ExtArgs>
+    billingAddress?: boolean | Order$billingAddressArgs<ExtArgs>
   }
 
   export type $OrderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Order"
     objects: {
       configuration: Prisma.$ConfigurationPayload<ExtArgs>
-      shippingAddress: Prisma.$ShippingAddressPayload<ExtArgs>
-      billingAddress: Prisma.$BillingAddressPayload<ExtArgs>
+      shippingAddress: Prisma.$ShippingAddressPayload<ExtArgs> | null
+      billingAddress: Prisma.$BillingAddressPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2789,8 +2789,8 @@ export namespace Prisma {
       amount: number
       isPaid: boolean
       status: $Enums.OrderStatus
-      shippingAddressId: string
-      billingAddressId: string
+      shippingAddressId: string | null
+      billingAddressId: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["order"]>
@@ -3188,8 +3188,8 @@ export namespace Prisma {
   export interface Prisma__OrderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     configuration<T extends ConfigurationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ConfigurationDefaultArgs<ExtArgs>>): Prisma__ConfigurationClient<$Result.GetResult<Prisma.$ConfigurationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    shippingAddress<T extends ShippingAddressDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ShippingAddressDefaultArgs<ExtArgs>>): Prisma__ShippingAddressClient<$Result.GetResult<Prisma.$ShippingAddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    billingAddress<T extends BillingAddressDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BillingAddressDefaultArgs<ExtArgs>>): Prisma__BillingAddressClient<$Result.GetResult<Prisma.$BillingAddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    shippingAddress<T extends Order$shippingAddressArgs<ExtArgs> = {}>(args?: Subset<T, Order$shippingAddressArgs<ExtArgs>>): Prisma__ShippingAddressClient<$Result.GetResult<Prisma.$ShippingAddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    billingAddress<T extends Order$billingAddressArgs<ExtArgs> = {}>(args?: Subset<T, Order$billingAddressArgs<ExtArgs>>): Prisma__BillingAddressClient<$Result.GetResult<Prisma.$BillingAddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3621,6 +3621,44 @@ export namespace Prisma {
      * Limit how many Orders to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Order.shippingAddress
+   */
+  export type Order$shippingAddressArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShippingAddress
+     */
+    select?: ShippingAddressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ShippingAddress
+     */
+    omit?: ShippingAddressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShippingAddressInclude<ExtArgs> | null
+    where?: ShippingAddressWhereInput
+  }
+
+  /**
+   * Order.billingAddress
+   */
+  export type Order$billingAddressArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillingAddress
+     */
+    select?: BillingAddressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillingAddress
+     */
+    omit?: BillingAddressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillingAddressInclude<ExtArgs> | null
+    where?: BillingAddressWhereInput
   }
 
   /**
@@ -6133,13 +6171,13 @@ export namespace Prisma {
     amount?: FloatFilter<"Order"> | number
     isPaid?: BoolFilter<"Order"> | boolean
     status?: EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
-    shippingAddressId?: StringFilter<"Order"> | string
-    billingAddressId?: StringFilter<"Order"> | string
+    shippingAddressId?: StringNullableFilter<"Order"> | string | null
+    billingAddressId?: StringNullableFilter<"Order"> | string | null
     createdAt?: DateTimeFilter<"Order"> | Date | string
     updatedAt?: DateTimeFilter<"Order"> | Date | string
     configuration?: XOR<ConfigurationScalarRelationFilter, ConfigurationWhereInput>
-    shippingAddress?: XOR<ShippingAddressScalarRelationFilter, ShippingAddressWhereInput>
-    billingAddress?: XOR<BillingAddressScalarRelationFilter, BillingAddressWhereInput>
+    shippingAddress?: XOR<ShippingAddressNullableScalarRelationFilter, ShippingAddressWhereInput> | null
+    billingAddress?: XOR<BillingAddressNullableScalarRelationFilter, BillingAddressWhereInput> | null
   }
 
   export type OrderOrderByWithRelationInput = {
@@ -6148,8 +6186,8 @@ export namespace Prisma {
     amount?: SortOrder
     isPaid?: SortOrder
     status?: SortOrder
-    shippingAddressId?: SortOrder
-    billingAddressId?: SortOrder
+    shippingAddressId?: SortOrderInput | SortOrder
+    billingAddressId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     configuration?: ConfigurationOrderByWithRelationInput
@@ -6166,13 +6204,13 @@ export namespace Prisma {
     amount?: FloatFilter<"Order"> | number
     isPaid?: BoolFilter<"Order"> | boolean
     status?: EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
-    shippingAddressId?: StringFilter<"Order"> | string
-    billingAddressId?: StringFilter<"Order"> | string
+    shippingAddressId?: StringNullableFilter<"Order"> | string | null
+    billingAddressId?: StringNullableFilter<"Order"> | string | null
     createdAt?: DateTimeFilter<"Order"> | Date | string
     updatedAt?: DateTimeFilter<"Order"> | Date | string
     configuration?: XOR<ConfigurationScalarRelationFilter, ConfigurationWhereInput>
-    shippingAddress?: XOR<ShippingAddressScalarRelationFilter, ShippingAddressWhereInput>
-    billingAddress?: XOR<BillingAddressScalarRelationFilter, BillingAddressWhereInput>
+    shippingAddress?: XOR<ShippingAddressNullableScalarRelationFilter, ShippingAddressWhereInput> | null
+    billingAddress?: XOR<BillingAddressNullableScalarRelationFilter, BillingAddressWhereInput> | null
   }, "id">
 
   export type OrderOrderByWithAggregationInput = {
@@ -6181,8 +6219,8 @@ export namespace Prisma {
     amount?: SortOrder
     isPaid?: SortOrder
     status?: SortOrder
-    shippingAddressId?: SortOrder
-    billingAddressId?: SortOrder
+    shippingAddressId?: SortOrderInput | SortOrder
+    billingAddressId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: OrderCountOrderByAggregateInput
@@ -6201,8 +6239,8 @@ export namespace Prisma {
     amount?: FloatWithAggregatesFilter<"Order"> | number
     isPaid?: BoolWithAggregatesFilter<"Order"> | boolean
     status?: EnumOrderStatusWithAggregatesFilter<"Order"> | $Enums.OrderStatus
-    shippingAddressId?: StringWithAggregatesFilter<"Order"> | string
-    billingAddressId?: StringWithAggregatesFilter<"Order"> | string
+    shippingAddressId?: StringNullableWithAggregatesFilter<"Order"> | string | null
+    billingAddressId?: StringNullableWithAggregatesFilter<"Order"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Order"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Order"> | Date | string
   }
@@ -6450,8 +6488,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     configuration: ConfigurationCreateNestedOneWithoutOrderInput
-    shippingAddress: ShippingAddressCreateNestedOneWithoutOrderInput
-    billingAddress: BillingAddressCreateNestedOneWithoutOrderInput
+    shippingAddress?: ShippingAddressCreateNestedOneWithoutOrderInput
+    billingAddress?: BillingAddressCreateNestedOneWithoutOrderInput
   }
 
   export type OrderUncheckedCreateInput = {
@@ -6460,8 +6498,8 @@ export namespace Prisma {
     amount: number
     isPaid?: boolean
     status?: $Enums.OrderStatus
-    shippingAddressId: string
-    billingAddressId: string
+    shippingAddressId?: string | null
+    billingAddressId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -6474,8 +6512,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     configuration?: ConfigurationUpdateOneRequiredWithoutOrderNestedInput
-    shippingAddress?: ShippingAddressUpdateOneRequiredWithoutOrderNestedInput
-    billingAddress?: BillingAddressUpdateOneRequiredWithoutOrderNestedInput
+    shippingAddress?: ShippingAddressUpdateOneWithoutOrderNestedInput
+    billingAddress?: BillingAddressUpdateOneWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateInput = {
@@ -6484,8 +6522,8 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
-    shippingAddressId?: StringFieldUpdateOperationsInput | string
-    billingAddressId?: StringFieldUpdateOperationsInput | string
+    shippingAddressId?: NullableStringFieldUpdateOperationsInput | string | null
+    billingAddressId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6496,8 +6534,8 @@ export namespace Prisma {
     amount: number
     isPaid?: boolean
     status?: $Enums.OrderStatus
-    shippingAddressId: string
-    billingAddressId: string
+    shippingAddressId?: string | null
+    billingAddressId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -6517,8 +6555,8 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
-    shippingAddressId?: StringFieldUpdateOperationsInput | string
-    billingAddressId?: StringFieldUpdateOperationsInput | string
+    shippingAddressId?: NullableStringFieldUpdateOperationsInput | string | null
+    billingAddressId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6910,14 +6948,14 @@ export namespace Prisma {
     isNot?: ConfigurationWhereInput
   }
 
-  export type ShippingAddressScalarRelationFilter = {
-    is?: ShippingAddressWhereInput
-    isNot?: ShippingAddressWhereInput
+  export type ShippingAddressNullableScalarRelationFilter = {
+    is?: ShippingAddressWhereInput | null
+    isNot?: ShippingAddressWhereInput | null
   }
 
-  export type BillingAddressScalarRelationFilter = {
-    is?: BillingAddressWhereInput
-    isNot?: BillingAddressWhereInput
+  export type BillingAddressNullableScalarRelationFilter = {
+    is?: BillingAddressWhereInput | null
+    isNot?: BillingAddressWhereInput | null
   }
 
   export type OrderCountOrderByAggregateInput = {
@@ -7190,18 +7228,22 @@ export namespace Prisma {
     update?: XOR<XOR<ConfigurationUpdateToOneWithWhereWithoutOrderInput, ConfigurationUpdateWithoutOrderInput>, ConfigurationUncheckedUpdateWithoutOrderInput>
   }
 
-  export type ShippingAddressUpdateOneRequiredWithoutOrderNestedInput = {
+  export type ShippingAddressUpdateOneWithoutOrderNestedInput = {
     create?: XOR<ShippingAddressCreateWithoutOrderInput, ShippingAddressUncheckedCreateWithoutOrderInput>
     connectOrCreate?: ShippingAddressCreateOrConnectWithoutOrderInput
     upsert?: ShippingAddressUpsertWithoutOrderInput
+    disconnect?: ShippingAddressWhereInput | boolean
+    delete?: ShippingAddressWhereInput | boolean
     connect?: ShippingAddressWhereUniqueInput
     update?: XOR<XOR<ShippingAddressUpdateToOneWithWhereWithoutOrderInput, ShippingAddressUpdateWithoutOrderInput>, ShippingAddressUncheckedUpdateWithoutOrderInput>
   }
 
-  export type BillingAddressUpdateOneRequiredWithoutOrderNestedInput = {
+  export type BillingAddressUpdateOneWithoutOrderNestedInput = {
     create?: XOR<BillingAddressCreateWithoutOrderInput, BillingAddressUncheckedCreateWithoutOrderInput>
     connectOrCreate?: BillingAddressCreateOrConnectWithoutOrderInput
     upsert?: BillingAddressUpsertWithoutOrderInput
+    disconnect?: BillingAddressWhereInput | boolean
+    delete?: BillingAddressWhereInput | boolean
     connect?: BillingAddressWhereUniqueInput
     update?: XOR<XOR<BillingAddressUpdateToOneWithWhereWithoutOrderInput, BillingAddressUpdateWithoutOrderInput>, BillingAddressUncheckedUpdateWithoutOrderInput>
   }
@@ -7506,8 +7548,8 @@ export namespace Prisma {
     status?: $Enums.OrderStatus
     createdAt?: Date | string
     updatedAt?: Date | string
-    shippingAddress: ShippingAddressCreateNestedOneWithoutOrderInput
-    billingAddress: BillingAddressCreateNestedOneWithoutOrderInput
+    shippingAddress?: ShippingAddressCreateNestedOneWithoutOrderInput
+    billingAddress?: BillingAddressCreateNestedOneWithoutOrderInput
   }
 
   export type OrderUncheckedCreateWithoutConfigurationInput = {
@@ -7515,8 +7557,8 @@ export namespace Prisma {
     amount: number
     isPaid?: boolean
     status?: $Enums.OrderStatus
-    shippingAddressId: string
-    billingAddressId: string
+    shippingAddressId?: string | null
+    billingAddressId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -7556,8 +7598,8 @@ export namespace Prisma {
     amount?: FloatFilter<"Order"> | number
     isPaid?: BoolFilter<"Order"> | boolean
     status?: EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
-    shippingAddressId?: StringFilter<"Order"> | string
-    billingAddressId?: StringFilter<"Order"> | string
+    shippingAddressId?: StringNullableFilter<"Order"> | string | null
+    billingAddressId?: StringNullableFilter<"Order"> | string | null
     createdAt?: DateTimeFilter<"Order"> | Date | string
     updatedAt?: DateTimeFilter<"Order"> | Date | string
   }
@@ -7758,7 +7800,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     configuration: ConfigurationCreateNestedOneWithoutOrderInput
-    billingAddress: BillingAddressCreateNestedOneWithoutOrderInput
+    billingAddress?: BillingAddressCreateNestedOneWithoutOrderInput
   }
 
   export type OrderUncheckedCreateWithoutShippingAddressInput = {
@@ -7767,7 +7809,7 @@ export namespace Prisma {
     amount: number
     isPaid?: boolean
     status?: $Enums.OrderStatus
-    billingAddressId: string
+    billingAddressId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -7806,7 +7848,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     configuration: ConfigurationCreateNestedOneWithoutOrderInput
-    shippingAddress: ShippingAddressCreateNestedOneWithoutOrderInput
+    shippingAddress?: ShippingAddressCreateNestedOneWithoutOrderInput
   }
 
   export type OrderUncheckedCreateWithoutBillingAddressInput = {
@@ -7815,7 +7857,7 @@ export namespace Prisma {
     amount: number
     isPaid?: boolean
     status?: $Enums.OrderStatus
-    shippingAddressId: string
+    shippingAddressId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -7851,8 +7893,8 @@ export namespace Prisma {
     amount: number
     isPaid?: boolean
     status?: $Enums.OrderStatus
-    shippingAddressId: string
-    billingAddressId: string
+    shippingAddressId?: string | null
+    billingAddressId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -7864,8 +7906,8 @@ export namespace Prisma {
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    shippingAddress?: ShippingAddressUpdateOneRequiredWithoutOrderNestedInput
-    billingAddress?: BillingAddressUpdateOneRequiredWithoutOrderNestedInput
+    shippingAddress?: ShippingAddressUpdateOneWithoutOrderNestedInput
+    billingAddress?: BillingAddressUpdateOneWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutConfigurationInput = {
@@ -7873,8 +7915,8 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
-    shippingAddressId?: StringFieldUpdateOperationsInput | string
-    billingAddressId?: StringFieldUpdateOperationsInput | string
+    shippingAddressId?: NullableStringFieldUpdateOperationsInput | string | null
+    billingAddressId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7884,8 +7926,8 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
-    shippingAddressId?: StringFieldUpdateOperationsInput | string
-    billingAddressId?: StringFieldUpdateOperationsInput | string
+    shippingAddressId?: NullableStringFieldUpdateOperationsInput | string | null
+    billingAddressId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7896,7 +7938,7 @@ export namespace Prisma {
     amount: number
     isPaid?: boolean
     status?: $Enums.OrderStatus
-    billingAddressId: string
+    billingAddressId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -7909,7 +7951,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     configuration?: ConfigurationUpdateOneRequiredWithoutOrderNestedInput
-    billingAddress?: BillingAddressUpdateOneRequiredWithoutOrderNestedInput
+    billingAddress?: BillingAddressUpdateOneWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutShippingAddressInput = {
@@ -7918,7 +7960,7 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
-    billingAddressId?: StringFieldUpdateOperationsInput | string
+    billingAddressId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7929,7 +7971,7 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
-    billingAddressId?: StringFieldUpdateOperationsInput | string
+    billingAddressId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7940,7 +7982,7 @@ export namespace Prisma {
     amount: number
     isPaid?: boolean
     status?: $Enums.OrderStatus
-    shippingAddressId: string
+    shippingAddressId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -7953,7 +7995,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     configuration?: ConfigurationUpdateOneRequiredWithoutOrderNestedInput
-    shippingAddress?: ShippingAddressUpdateOneRequiredWithoutOrderNestedInput
+    shippingAddress?: ShippingAddressUpdateOneWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutBillingAddressInput = {
@@ -7962,7 +8004,7 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
-    shippingAddressId?: StringFieldUpdateOperationsInput | string
+    shippingAddressId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7973,7 +8015,7 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
-    shippingAddressId?: StringFieldUpdateOperationsInput | string
+    shippingAddressId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

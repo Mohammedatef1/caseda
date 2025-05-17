@@ -7,9 +7,12 @@ import { Button } from "@/components/ui/button"
 import { Configuration } from "@/generated/prisma"
 import { cn } from "@/lib/utils"
 import { useMutation } from "@tanstack/react-query"
-import { ArrowRight, Check } from "lucide-react"
+import { ArrowRight, Check, LoaderCircle } from "lucide-react"
 import { useEffect, useState } from "react"
 import Confetti from 'react-dom-confetti'
+import { createCheckoutSession } from "./actions"
+import { useRouter } from "next/navigation"
+import { toast } from "sonner"
 
 interface DesignPreviewProps {
   configuration : Configuration
@@ -28,15 +31,29 @@ const DesignPreview = ({configuration} : DesignPreviewProps) => {
   const model = MODELS.options.find(item => item.value === modelValue)
 
   let totalPrice = BASE_PRICE
-  totalPrice += (finish?.price ?? 0) +( material?.price ?? 0)
+  totalPrice += (finish?.price ?? 0) + ( material?.price ?? 0)
 
-  const {} = useMutation({
+  const router = useRouter()
+
+  const {mutate: checkout, isPending } = useMutation({
     mutationKey: ["create-payment-session"],
-    mutationFn: async () => {
+    mutationFn: createCheckoutSession,
+    onSuccess: (res) => {
+      if(!res) return
       
+      const { url } = res
+      if (url) {
+        router.push(url)
+      } else {
+        throw new Error('Unable to retrieve payment URL')
+      }
+    },
+    onError: (error) => {
+      console.log(error)
+      toast("something went wrong")
     }
   })
-
+ 
   return (
     <>
       <div
@@ -127,9 +144,10 @@ const DesignPreview = ({configuration} : DesignPreviewProps) => {
 
             <div className='mt-8 flex justify-end pb-12'>
               <Button
-                // onClick={() => handleCheckout()}
-                className='px-4 sm:px-6 lg:px-8 cursor-pointer'>
-                Check out <ArrowRight className='h-4 w-4 ml-1.5 inline' />
+                onClick={() => checkout({configuration: configuration})}
+                disabled={isPending}
+                className='px-4 sm:px-6 lg:px-8 cursor-pointer disabled:opacity-75 transition-opacity'>
+                Check out{isPending ? <LoaderCircle className='animate-spin' /> : <ArrowRight className='h-4 w-4 ml-1.5 inline' />}
               </Button>
             </div>
           </div>
