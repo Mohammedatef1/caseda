@@ -1,14 +1,14 @@
 import { db } from "@/db"
-import { SearchParams } from "next/dist/server/request/search-params"
 import { notFound } from "next/navigation"
 import DesignConfigurator from "./DesignConfigurator"
 
 interface PageProps {
-  searchParams: SearchParams
+  searchParams: {[key: string] : string | string[] | undefined }
 }
 
 const page = async({searchParams} : PageProps) => {
-  const {id} = await searchParams
+
+  const { id } = searchParams
 
   if (!id || typeof id !== "string") return notFound()
 
