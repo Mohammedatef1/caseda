@@ -8,7 +8,7 @@ interface PageProps {
 
 const page = async({searchParams} : PageProps) => {
 
-  const {id} = await searchParams
+  const id = await searchParams?.id
 
   if (!id || typeof id !== "string") return notFound()
 
