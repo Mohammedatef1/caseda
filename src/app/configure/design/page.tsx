@@ -6,7 +6,7 @@ interface PageProps {
   searchParams: {[key: string] : string | string[] | undefined }
 }
 
-const page = async({searchParams} : PageProps) => {
+const Page = async({searchParams} : PageProps) => {
 
   const { id } = searchParams
 
@@ -28,4 +28,4 @@ const page = async({searchParams} : PageProps) => {
   )
 }
 
-export default page
+export default Page
