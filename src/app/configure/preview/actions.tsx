@@ -49,7 +49,7 @@ export const createCheckoutSession = async ({configuration} : {configuration : C
     success_url: `${process.env.BASE_APP_URL}/thank-you?orderId=${order.id}`,
     cancel_url: `${process.env.BASE_APP_URL}/configure/preview?id=${configuration.id}`,
     payment_method_types: ['card'],
-    shipping_address_collection: {allowed_countries: ['UG', 'EG']},
+    shipping_address_collection: {allowed_countries: ['US', 'EG']},
     line_items: [{price: product.default_price as string, quantity: 1}],
     mode: 'payment',
     metadata: {
