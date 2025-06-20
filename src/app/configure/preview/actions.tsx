@@ -3,7 +3,7 @@
 import { BASE_PRICE } from "@/app/config/products"
 import { FINISH, MATERIAL, MODELS } from "@/app/validators/option-validator"
 import { db } from "@/db"
-import { Configuration, Order } from "@/generated/prisma"
+import { Configuration, Order } from "../../../../prisma/generated/prisma"
 import { stripe } from "@/lib/stripe"
 
 export const createCheckoutSession = async ({configuration} : {configuration : Configuration}) => {
