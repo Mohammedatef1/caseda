@@ -201,7 +201,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\user2\\Desktop\\Mo\\caseda\\src\\generated\\prisma",
+      "value": "C:\\josh\\caseda\\prisma\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -215,30 +215,30 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\user2\\Desktop\\Mo\\caseda\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\josh\\caseda\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null,
-    "schemaEnvPath": "../../../.env"
+    "rootEnvPath": null
   },
-  "relativePath": "../../../prisma",
+  "relativePath": "../..",
   "clientVersion": "6.7.0",
   "engineVersion": "3cff47a7f5d65c3ea74883f1d736e41d68ce91ed",
   "datasourceNames": [
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://neondb_owner:npg_GxMdreaNS2j3@ep-proud-thunder-a2hvip74-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require"
+        "value": null
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nenum Color {\n  red\n  blue\n  black\n}\n\nenum Model {\n  iphonex\n  iphone11\n  iphone12\n  iphone13\n  iphone14\n  iphone15\n}\n\nenum Material {\n  silicon\n  polycarbonate\n}\n\nenum Finish {\n  smooth\n  texture\n}\n\nenum OrderStatus {\n  fulfilled\n  shipped\n  waiting_shipment\n}\n\nmodel Configuration {\n  id              String  @id @default(cuid())\n  width           Int\n  height          Int\n  imgUrl          String\n  croppedImageUrl String?\n  color           String?\n  model           String?\n  finish          String?\n  material        String?\n  price           Int?\n  Order           Order[]\n}\n\nmodel Order {\n  id              String        @id @default(cuid())\n  configuration   Configuration @relation(fields: [configurationId], references: [id])\n  configurationId String\n  amount          Float\n  isPaid          Boolean       @default(false)\n  status          OrderStatus   @default(waiting_shipment)\n\n  shippingAddress   ShippingAddress? @relation(fields: [shippingAddressId], references: [id])\n  shippingAddressId String?\n  billingAddress    BillingAddress?  @relation(fields: [billingAddressId], references: [id])\n  billingAddressId  String?\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel ShippingAddress {\n  id          String  @id @default(cuid())\n  name        String\n  street      String\n  city        String\n  postalCode  String\n  country     String\n  State       String?\n  phoneNumber String?\n  order       Order[]\n}\n\nmodel BillingAddress {\n  id          String  @id @default(cuid())\n  name        String\n  street      String\n  city        String\n  postalCode  String\n  country     String\n  State       String?\n  phoneNumber String?\n  order       Order[]\n}\n",
-  "inlineSchemaHash": "d9a94fc9f9648858b74ebed1b573b32ec682ab816b361a5eaa2a4c95b81e5fc1",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nenum Color {\n  red\n  blue\n  black\n}\n\nenum Model {\n  iphonex\n  iphone11\n  iphone12\n  iphone13\n  iphone14\n  iphone15\n}\n\nenum Material {\n  silicon\n  polycarbonate\n}\n\nenum Finish {\n  smooth\n  texture\n}\n\nenum OrderStatus {\n  fulfilled\n  shipped\n  waiting_shipment\n}\n\nmodel Configuration {\n  id              String  @id @default(cuid())\n  width           Int\n  height          Int\n  imgUrl          String\n  croppedImageUrl String?\n  color           String?\n  model           String?\n  finish          String?\n  material        String?\n  price           Int?\n  Order           Order[]\n}\n\nmodel Order {\n  id              String        @id @default(cuid())\n  configuration   Configuration @relation(fields: [configurationId], references: [id])\n  configurationId String\n  amount          Float\n  isPaid          Boolean       @default(false)\n  status          OrderStatus   @default(waiting_shipment)\n\n  shippingAddress   ShippingAddress? @relation(fields: [shippingAddressId], references: [id])\n  shippingAddressId String?\n  billingAddress    BillingAddress?  @relation(fields: [billingAddressId], references: [id])\n  billingAddressId  String?\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel ShippingAddress {\n  id          String  @id @default(cuid())\n  name        String\n  street      String\n  city        String\n  postalCode  String\n  country     String\n  State       String?\n  phoneNumber String?\n  order       Order[]\n}\n\nmodel BillingAddress {\n  id          String  @id @default(cuid())\n  name        String\n  street      String\n  city        String\n  postalCode  String\n  country     String\n  State       String?\n  phoneNumber String?\n  order       Order[]\n}\n",
+  "inlineSchemaHash": "31cfb220577c1701ae6a089ea35b7fe439cfd371206b4064ba48d616a7df3afa",
   "copyEngine": true
 }
 config.dirname = '/'
