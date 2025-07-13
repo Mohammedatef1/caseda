@@ -202,7 +202,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\josh\\caseda\\prisma\\generated\\prisma",
+      "value": "C:\\Mo\\caseda\\prisma\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -213,14 +213,19 @@ const config = {
         "fromEnvVar": null,
         "value": "windows",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "rhel-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\josh\\caseda\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Mo\\caseda\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null
+    "rootEnvPath": null,
+    "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../..",
   "clientVersion": "6.7.0",
@@ -238,8 +243,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nenum Color {\n  red\n  blue\n  black\n}\n\nenum Model {\n  iphonex\n  iphone11\n  iphone12\n  iphone13\n  iphone14\n  iphone15\n}\n\nenum Material {\n  silicon\n  polycarbonate\n}\n\nenum Finish {\n  smooth\n  texture\n}\n\nenum OrderStatus {\n  fulfilled\n  shipped\n  waiting_shipment\n}\n\nmodel Configuration {\n  id              String  @id @default(cuid())\n  width           Int\n  height          Int\n  imgUrl          String\n  croppedImageUrl String?\n  color           String?\n  model           String?\n  finish          String?\n  material        String?\n  price           Int?\n  Order           Order[]\n}\n\nmodel Order {\n  id              String        @id @default(cuid())\n  configuration   Configuration @relation(fields: [configurationId], references: [id])\n  configurationId String\n  amount          Float\n  isPaid          Boolean       @default(false)\n  status          OrderStatus   @default(waiting_shipment)\n\n  shippingAddress   ShippingAddress? @relation(fields: [shippingAddressId], references: [id])\n  shippingAddressId String?\n  billingAddress    BillingAddress?  @relation(fields: [billingAddressId], references: [id])\n  billingAddressId  String?\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel ShippingAddress {\n  id          String  @id @default(cuid())\n  name        String\n  street      String\n  city        String\n  postalCode  String\n  country     String\n  State       String?\n  phoneNumber String?\n  order       Order[]\n}\n\nmodel BillingAddress {\n  id          String  @id @default(cuid())\n  name        String\n  street      String\n  city        String\n  postalCode  String\n  country     String\n  State       String?\n  phoneNumber String?\n  order       Order[]\n}\n",
-  "inlineSchemaHash": "31cfb220577c1701ae6a089ea35b7fe439cfd371206b4064ba48d616a7df3afa",
+  "inlineSchema": "generator client {\n  provider      = \"prisma-client-js\"\n  output        = \"./generated/prisma\"\n  binaryTargets = [\"native\", \"rhel-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nenum Color {\n  red\n  blue\n  black\n}\n\nenum Model {\n  iphonex\n  iphone11\n  iphone12\n  iphone13\n  iphone14\n  iphone15\n}\n\nenum Material {\n  silicon\n  polycarbonate\n}\n\nenum Finish {\n  smooth\n  texture\n}\n\nenum OrderStatus {\n  fulfilled\n  shipped\n  waiting_shipment\n}\n\nmodel Configuration {\n  id              String  @id @default(cuid())\n  width           Int\n  height          Int\n  imgUrl          String\n  croppedImageUrl String?\n  color           String?\n  model           String?\n  finish          String?\n  material        String?\n  price           Int?\n  Order           Order[]\n}\n\nmodel Order {\n  id              String        @id @default(cuid())\n  configuration   Configuration @relation(fields: [configurationId], references: [id])\n  configurationId String\n  amount          Float\n  isPaid          Boolean       @default(false)\n  status          OrderStatus   @default(waiting_shipment)\n\n  shippingAddress   ShippingAddress? @relation(fields: [shippingAddressId], references: [id])\n  shippingAddressId String?\n  billingAddress    BillingAddress?  @relation(fields: [billingAddressId], references: [id])\n  billingAddressId  String?\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel ShippingAddress {\n  id          String  @id @default(cuid())\n  name        String\n  street      String\n  city        String\n  postalCode  String\n  country     String\n  State       String?\n  phoneNumber String?\n  order       Order[]\n}\n\nmodel BillingAddress {\n  id          String  @id @default(cuid())\n  name        String\n  street      String\n  city        String\n  postalCode  String\n  country     String\n  State       String?\n  phoneNumber String?\n  order       Order[]\n}\n",
+  "inlineSchemaHash": "799a41c08a85776aa1eb5890a72de782709a6f4cb09c2f702300d4036c7844f2",
   "copyEngine": true
 }
 
@@ -280,6 +285,10 @@ Object.assign(exports, Prisma)
 // file annotations for bundling tools to include these files
 path.join(__dirname, "query_engine-windows.dll.node");
 path.join(process.cwd(), "prisma/generated/prisma/query_engine-windows.dll.node")
+
+// file annotations for bundling tools to include these files
+path.join(__dirname, "libquery_engine-rhel-openssl-3.0.x.so.node");
+path.join(process.cwd(), "prisma/generated/prisma/libquery_engine-rhel-openssl-3.0.x.so.node")
 // file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
 path.join(process.cwd(), "prisma/generated/prisma/schema.prisma")
