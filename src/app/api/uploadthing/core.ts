@@ -17,7 +17,6 @@ export const ourFileRouter = {
       return { input };
     })
     .onUploadComplete(async ({ metadata, file }) => {
-      console.log('completed');
       const configId = metadata.input.configId
       
       if (!configId) {
